@@ -1,24 +1,21 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from './Header';
-import Card from './Card';
-import Sdata from './Sdata';
+import Home from './Home';
+import Mycart from './Mycart';
 
 const App = () => {
 
     return (
         <>
-            <Header />
-            <div className='main_div'>
-            {Sdata.map((val) => {
-                return (
-                    <Card 
-                        imgsrc={val.imgsrc}
-                        title={val.title}
-                        price={val.price}
-                    />
-                );
-            })}
-            </div>
+            <Router>
+                <Header />
+                <Routes>
+                    <Route exact path='/' element={<Home />} />
+                    <Route exact path='/Mycart' element={<Mycart />} />
+                    <Route path='*' element={<Home />} />
+                </Routes>
+            </Router>
         </>
     )
 }
