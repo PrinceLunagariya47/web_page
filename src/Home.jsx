@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Card from './Card';
 import Sdata from './Sdata';
+import { CartContext } from './App';
 
 const Home = () => {
-
-    const [cartItem, setCartItem] = useState([]);
-
-    const AddItem = (id) => {
-        let newItem = Sdata.filter((val) => {
-            return val.id === id;
-        })
-        setCartItem((oldItem) => [...oldItem, newItem]);
-    }
+    const [cartItem, AddItem, MyFunction] = useContext(CartContext);
 
     return (
         <div className='main_div'>

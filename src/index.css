@@ -52,3 +52,8 @@
   margin-bottom: 10px;
   cursor: pointer;
 }
+.quantity {
+  width: 12%;
+  text-align: center;
+  margin: 0px 8px;
+}
