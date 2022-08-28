@@ -11,29 +11,34 @@ const App = () => {
 
     const [cartItem, setCartItem] = useState([]);
 
-    const MyFunction = (value, id) => {
-        const data = Sdata.filter((val) => {
-            return val.id === id;
-        })
-        if(value === 'true'){
-            data[0].quantity = data[0].quantity + 1;
-        }
-        else if(value > 0){
-            data[0].quantity = data[0].quantity - 1;
-        }
+    const [inputList, setInputList] = useState();
+
+    const qtyPluse = (id) => {
+        const data = cartItem.map(obj => obj.id === id ? { ...obj, quantity: obj.quantity + 1 } : obj);
+        setCartItem(data);
     }
+
+    const qtyMinus = (id) => {
+        const data = cartItem.map(obj => obj.id === id ? { ...obj, quantity: obj.quantity - 1 } : obj);
+        setCartItem(data);
+    }
+
+    const changequantity = (event) => {
+        setInputList(event.target.value);
+    }
+    console.log(inputList);
 
     const AddItem = (id) => {
-        let newItem = Sdata.filter((val) => {
+        const newItem = Sdata.filter((val) => {
             return val.id === id;
         })
-        // impliment coundition     
-        setCartItem((oldItem) => [...oldItem, newItem]);
+        // impliment coundition
+        setCartItem((oldItem) => [...oldItem, ...newItem]);
     }
-
+    console.log(cartItem);
     return (
         <>
-            <CartContext.Provider value={[cartItem, AddItem, MyFunction]}>
+            <CartContext.Provider value={[cartItem, AddItem, qtyPluse, qtyMinus, changequantity]}>
                 <Router>
                     <Header />
                     <Routes>
@@ -48,4 +53,4 @@ const App = () => {
 }
 
 export default App;
-export {CartContext};
+export { CartContext };
