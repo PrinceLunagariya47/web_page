@@ -11,6 +11,7 @@ const Home = () => {
             {Sdata.map((val) => {
                 return (
                     <Card
+                        key={val.id}
                         id={val.id}
                         imgsrc={val.imgsrc}
                         title={val.title}
