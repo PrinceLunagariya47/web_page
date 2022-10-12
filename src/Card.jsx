@@ -8,7 +8,7 @@ const Card = (props) => {
             <div className='card_info'>
                 <h3 className='card_title'>{props.title}</h3>
                 <h4 className='price'>{props.price}</h4>
-                <button className='add_btn' onClick={() => { props.function(props.id) }}>Add Cart</button>
+                <button className='add_btn' onClick={() => { props.addItem(props) }}>Add Cart</button>
             </div>
         </div>
     )
