@@ -1,36 +1,59 @@
-// import React, { useContext, useState } from 'react';
-// import Cart_card from './Cart_card';
-// import { CartContext } from './App'; 
+import React from 'react';
+import Cart_card from './Cart_card';
+import { useSelector, useDispatch } from 'react-redux';
+import { qtyPlus, qtyMinus, changeQuantity, deleteCartItem } from './actions';
 
-// const Mycart = () => {
+const Mycart = () => {
 
-//   const [cartItem, AddItem, qtyPluse, qtyMinus, changequantity] = useContext(CartContext);
+    const dispatch = useDispatch();
 
-//   let payAmount = 0;
+    const cartItem = useSelector((state) => state.cart);
 
-//   return (
-//     <>
-//       <div className='main_div'>
-//         {cartItem.map((val) => {
-//           payAmount += val.price * val.quantity;
-//           return (
-//             <Cart_card
-//               key={val.id}
-//               id={val.id}
-//               imgsrc={val.imgsrc}
-//               title={val.title}
-//               price={val.price}
-//               quantity={val.quantity}
-//               qtyPluse={qtyPluse}
-//               qtyMinus={qtyMinus}
-//               changequantity={changequantity}
-//             />
-//           );
-//         })}
-//       </div>
-//       <footer className='footer-content'><h3> total payable amount $ {payAmount} </h3></footer>
-//     </>
-//   )
-// }
+    const QTYPlus = (data) => {
+        dispatch(qtyPlus(data))
+    }
 
-// export default Mycart;
+    const QTYMinus = (data) => {
+        dispatch(qtyMinus(data))
+    }
+
+    const CHANGEQuantity = (e, data) => {
+        dispatch(changeQuantity(e, data))
+    }
+
+    const DELETECartItem = (data) => {
+        dispatch(deleteCartItem(data))
+        document.getElementById('message').innerHTML = 'Item Has Been Successfully Deleted';
+        document.getElementById('message').style = 'display: block';
+        setTimeout(() => {
+            document.getElementById('message').innerHTML = '';
+            document.getElementById('message').style = 'display: none';
+        }, 1000);
+    }
+
+    let payAmount = 0;
+
+    return (
+        <>
+            <p id='message' className='Message error_Message'></p>
+            <div className='main_div cart_div'>
+                {cartItem.map((val) => {
+                    payAmount += val.price * val.quantity;
+                    return (
+                        <Cart_card
+                            key={val.id}
+                            val={val}
+                            DELETECartItem={DELETECartItem}
+                            QTYPlus={QTYPlus}
+                            QTYMinus={QTYMinus}
+                            CHANGEQuantity={CHANGEQuantity}
+                        />
+                    );
+                })}
+            </div>
+            <footer className='footer-content'><h3> total payable amount $ {payAmount} </h3></footer>
+        </>
+    )
+}
+
+export default Mycart;

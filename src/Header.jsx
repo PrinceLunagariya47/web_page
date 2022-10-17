@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import store from './store/store';
 
 const Header = () => {
+
+    const cartItem = useSelector((state) => state.cart);
 
     const navLinkStyle = ({ isActive }) => {
         return {
@@ -14,7 +18,9 @@ const Header = () => {
         <>
             <div className='header'>
                 <NavLink to="/" style={navLinkStyle} className='menu'>Home</NavLink>
-                <NavLink to="/Mycart" style={navLinkStyle} className='menu cart_btn'>My Cart</NavLink>
+                <NavLink to="/Mycart" style={navLinkStyle} className='menu'>
+                    My Cart <span className='item_count'>{cartItem.length}</span>
+                </NavLink>
             </div>
         </>
     )
