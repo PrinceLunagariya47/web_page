@@ -23,12 +23,6 @@ const Mycart = () => {
 
     const DELETECartItem = (data) => {
         dispatch(deleteCartItem(data))
-        document.getElementById('message').innerHTML = 'Item Has Been Successfully Deleted';
-        document.getElementById('message').style = 'display: block';
-        setTimeout(() => {
-            document.getElementById('message').innerHTML = '';
-            document.getElementById('message').style = 'display: none';
-        }, 1000);
     }
 
     let payAmount = 0;

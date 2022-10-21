@@ -5,12 +5,13 @@
 }
 
 .header {
+  width: 100%;
   position: fixed;
   left: 0;
   top: 0;
-  width: 100%;
+  right: 0;
   height: 60px;
-  background-color: gray;
+  background-color: aliceblue;
   box-shadow: 5px 5px 5px 0px rgb(37, 37, 37);
   letter-spacing: 1px;
   display: flex;
@@ -19,95 +20,59 @@
   z-index: 1;
 }
 
-.menu {
-  text-decoration: none;
-  color: black;
-  background-color: lightgray;
-  padding: 7px 12px;
-  border: 2px solid black;
-}
-
 .item_count {
   color: white;
   background-color: rgb(204, 30, 30);
-  padding: 3px 7px;
+  padding: 2px 7px;
   border-radius: 50%;
+  position: relative;
+  bottom: 33px;
+  right: 10px;
 }
 
-.Message {
-  display: none;
-  background-color: rgb(39, 102, 39);
-  color: white;
-  padding: 7px;
-  border: none;
-  border-radius: 5px;
-  position: fixed;
-  top: 60px;
-  right: 0;
+.cards:hover {
+  box-shadow: 1px 8px 20px grey;
+  border: 2px solid black !important;
+  -ms-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
 
-.error_Message {
-  background-color: red !important
+.cart_icon {
+  margin-top: 12px;
+}
+
+.btn {
+  font-family: "Public Sans", var(--joy-fontFamily-fallback) !important;
+  background-color: rgb(89, 111, 135) !important;
+  margin-left: 30px !important;
+}
+
+.buttons {
+  background-color: rgb(89, 111, 135) !important;
+  color: aliceblue !important;
+}
+
+.delete {
+  padding: 10px 0 !important;
 }
 
 .main_div {
   margin: 2%;
-  display: flex;
+  margin-top: 90px;
+  margin-bottom: 70px;
   justify-content: space-evenly;
-  margin-top: 80px;
+  display: flex;
   flex-wrap: wrap;
   row-gap: 25px;
 }
 
-.cart_div {
-  margin-bottom: 70px;
+.text_fild {
+  width: 40px;
 }
 
-.cards {
-  background-color: #d7d4a6;
-  width: 18%;
-}
-
-.card_img {
-  width: 100%;
-  height: 200px;
-  padding: 10px;
-}
-
-.card_info {
-  text-align: center;
-}
-
-.price {
-  color: red;
-  font-size: large;
-  margin: 6px;
-}
-
-.add_btn {
-  background-color: rgb(204, 30, 30);
-  color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
-.delete_btn {
-  background-color: rgb(204, 30, 30);
-  border: none;
-  border-radius: 5px;
-  color: white;
-  padding: 5px 8px;
-  margin-right: 8px;
-  cursor: pointer;
-}
-
-.quantity {
-  width: 12%;
-  text-align: center;
-  margin: 0px 8px;
+input {
+  text-align: center !important;
 }
 
 .footer-content h3 {
@@ -122,7 +87,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: gray;
+  background-color: aliceblue;
   text-align: center;
   box-shadow: 5px 0px 5px 5px rgb(37, 37, 37);
 }

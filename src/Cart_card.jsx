@@ -1,5 +1,11 @@
 import React from 'react';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
+import AspectRatio from '@mui/joy/AspectRatio';
+import Box from '@mui/joy/Box';
+import Button from '@material-ui/core/Button';
+import Cards from '@mui/joy/Card';
+import Typography from '@mui/joy/Typography';
+import TextField from '@material-ui/core/TextField';
 
 const Cart_card = (props) => {
 
@@ -10,18 +16,45 @@ const Cart_card = (props) => {
     }
 
     return (
-        <div className='cards'>
-            <img src={props.val.imgsrc} alt={props.val.title} className='card_img' />
-            <div className='card_info'>
-                <h3 className='card_title'>{props.val.title}</h3>
-                <h4 className='price'>{props.val.price}</h4>
-                <button className='delete_btn' onClick={() => { props.DELETECartItem(props.val) }}> <FaTrash /> </button>
-                <button className='add_btn' style={{ opacity: boolean ? "1" : "0.7" }} onClick={() => { props.QTYMinus(props.val) }}> -- </button>
-                <input type="text" value={props.val.quantity} className="quantity" onChange={(e) => { props.CHANGEQuantity(e, props.val) }} />
-                <button className='add_btn' onClick={() => { props.QTYPlus(props.val) }}> + </button>
-                <h3 className='price'> Amount $ {props.val.price * props.val.quantity} </h3>
-            </div>
-        </div>
+        <>
+            <Cards variant="outlined" className='cards' sx={{ width: 230, background: 'aliceblue' }}>
+                <Typography fontSize="lg" fontWeight="lg" sx={{ mb: 0.5 }}>
+                    {props.val.title}
+                </Typography>
+                <Typography fontSize="lg" fontWeight="lg">
+                    $  {props.val.price}
+                </Typography>
+                <AspectRatio minHeight="50px" maxHeight="150px" sx={{ my: 2 }}>
+                    <img
+                        src={props.val.imgsrc}
+                        loading="lazy"
+                        alt={props.val.title}
+                    />
+                </AspectRatio>
+                <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+                    <Button variant="contained" className='buttons' style={{ opacity: boolean ? "1" : "0.7" }} onClick={() => { props.QTYMinus(props.val) }}>
+                        <FaMinus />
+                    </Button>
+                    <TextField
+                        id="standard-basic"
+                        className='text_fild'
+                        value={props.val.quantity}
+                        onChange={(e) => { props.CHANGEQuantity(e, props.val) }}
+                    />
+                    <Button variant="contained" className='buttons' onClick={() => { props.QTYPlus(props.val) }}>
+                        <FaPlus />
+                    </Button>
+                </Box><br />
+                <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+                    <Button variant="contained" className='buttons delete' onClick={() => { props.DELETECartItem(props.val) }}>
+                        <FaTrash />
+                    </Button>
+                    <Typography fontSize="lg" fontWeight="lg">
+                    Total : $ {props.val.price * props.val.quantity}
+                </Typography>
+                </Box>
+            </Cards>
+        </>
     )
 }
 

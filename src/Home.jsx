@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import Card from './Card';
 import Sdata from './Sdata';
 import { addItem } from './actions';
-import { notInitialized } from 'react-redux/es/utils/useSyncExternalStore';
+import Alert from '@material-ui/lab/Alert';
+
 
 const Home = () => {
 
@@ -11,17 +12,10 @@ const Home = () => {
 
     const AddItem = (data) => {
         dispatch(addItem(data))
-        document.getElementById('message').innerHTML = 'Item Has Been Successfully Added';
-        document.getElementById('message').style = 'display: block';
-        setTimeout(() => {
-            document.getElementById('message').innerHTML = '';
-            document.getElementById('message').style = 'display: none';
-        }, 1000);
     };
 
     return (
         <>
-            <p id='message' className='Message'></p>
             <div className='main_div'>
                 {Sdata.map((val) => {
                     return (
